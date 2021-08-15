@@ -46,16 +46,22 @@ const managerQuestions = [
 
 
 //Question
-AddEmployee = [
+const addEmployee = [
     {
         name: "poistion",
         message: "What type of team member would tyou like to add?",
         type: "list",
         choices: ["Engineer", "Intern"],
+        valide: position => {
+            if (position === "Engineer"){
+            return true;
+            engineerQuestions;
+            }     
+        }   
     }
 ]
 
-engineerQuestions = [
+const engineerQuestions = async (array) => [
     {
         name: ""
     }
