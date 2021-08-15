@@ -1,33 +1,76 @@
 const fs = require("fs");
 const path = require ("path");
+const tempDirect = path.resolve(__dirname, "../src");
 
-const generateHTML = (answers) =>
-  `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>Engineering Team Profile</title>
-</head>
+//function for adding the manager's details into the manager.html
+const renderManager = manager => {
 
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 jumbotron mb-3 team-heading">
-            <h1 class="text-center">My Team</h1>
-        
-        </div>
-    </div>
-</div>
+    let template = fs.readFileSync(path.resolve(templatesDir, "manager.html"), "utf8");
+    template = replacePlaceholders(template, "name", manager.getName());
+    template = replacePlaceholders(template, "role", manager.getposition());
+    template = replacePlaceholders(template, "email", manager.getEmail());
+    template = replacePlaceholders(template, "id", manager.getId());
+    template = replacePlaceholders(template, "officeNumber", manager.getOfficeNumber());
+    return template;
+};
 
-<div class="container">
-    <div class="row">
-        <div class="team-area col-12 d-flex justify-content-center">
-            {{ team }}
-        </div>
-    </div>
-</div>
+//function for adding the engineer's details into the engineer.html
+const renderEngineer = engineer => {
 
-</body>
-</html>`;
+    let template = fs.readFileSync(path.resolve(templatesDir, "engineer.html"), "utf8");
+    template = replacePlaceholders(template, "name", engineer.getName());
+    template = replacePlaceholders(template, "role", engineer.getposition());
+    template = replacePlaceholders(template, "email", engineer.getEmail());
+    template = replacePlaceholders(template, "id", engineer.getId());
+    template = replacePlaceholders(template, "github", engineer.getGithub());
+    return template;
+};
+
+//Function for adding the intern's details into the intern.html
+const renderIntern = intern => {
+
+    let template = fs.readFileSync(path.resolve(templatesDir, "intern.html"), "utf8");
+    template = replacePlaceholders(template, "name", intern.getName());
+    template = replacePlaceholders(template, "role", intern.getposition());
+    template = replacePlaceholders(template, "email", intern.getEmail());
+    template = replacePlaceholders(template, "id", intern.getId());
+    template = replacePlaceholders(template, "school", intern.getSchool());
+    return template;
+};
+
+// Function for merging the employee html templates to the main.html
+const render = employees => {
+    const html = [];
+  
+    html.push(employees
+      .filter(employee => employee.getposition() === "Manager")
+      .map(manager => renderManager(manager))
+    );
+
+    html.push(employees
+      .filter(employee => employee.getposition() === "Engineer")
+      .map(engineer => renderEngineer(engineer))
+    );
+
+    html.push(employees
+      .filter(employee => employee.getposition() === "Intern")
+      .map(intern => renderIntern(intern))
+    );
+  
+    return renderMain(html.join(""));
+  
+};
+
+const renderMain = html => {
+
+    const template = fs.readFileSync(path.resolve(templatesDir, "main.html"), "utf8");
+    return replacePlaceholders(template, "team", html);
+};
+  
+  const replacePlaceholders = (template, placeholder, value) => {
+
+    const pattern = new RegExp("{{ " + placeholder + " }}", "gm");
+    return template.replace(pattern, value);
+};
+
+module.exports = render;

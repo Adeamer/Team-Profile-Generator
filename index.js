@@ -10,8 +10,8 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const GenerateHTML = require("./Util/GenerateHTML");
-const { init } = require('cjs-module-lexer');
+const render = require("./Util/GenerateHTML");
+// const { init } = require('cjs-module-lexer');
 
 //Creating the array for the employee's
 let employeeArray = [];
@@ -104,7 +104,7 @@ const addEmployee = [
     }
 ]
 
-//Function for going to either enginner or interns question after entering managers details
+//Function for going to either engineer or intern's question after entering managers details
 function nextEmployee() {
     inquirer.prompt(addEmployee).then((response) => {
 
@@ -124,7 +124,7 @@ function nextEmployee() {
 };
 
 //Function to start the application 
-function init() {
+function initialize() {
     managerPrompt();
 };
 
@@ -140,6 +140,7 @@ function managerPrompt() {
         const manager = new Manager(name, id, email, office);
 
         employeeArray.push(manager);
+        console.log(manager);
 
         nextEmployee();
     })
@@ -185,4 +186,4 @@ function makeTeam() {
 };
 
 //Calling the init function
-init();
+initialize();
