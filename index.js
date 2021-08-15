@@ -54,9 +54,12 @@ const addEmployee = [
         choices: ["Engineer", "Intern"],
         valide: position => {
             if (position === "Engineer"){
-            return true;
-            engineerQuestions;
-            }     
+                return true;
+                engineerQuestions;
+            }else if(position === "Intern"){
+                return true;
+                internQuestions;
+            }
         }   
     }
 ]
