@@ -94,11 +94,11 @@ const internQuestions = [
     }
 ]
 
-//Question for adding a new team memeber
+//Question for adding a new team member
 const addEmployee = [
     {
         name: "addTeamMember",
-        message: "Select the type of team memeber you would like to add, if your have completed this then select Done to generate your team",
+        message: "Select the type of team member you would like to add, if your have completed this then select Done to generate your team",
         type: "list",
         choices: ["Engineer", "Intern", "Done"]
     }
@@ -109,7 +109,7 @@ function nextEmployee() {
     inquirer.prompt(addEmployee).then((response) => {
 
         console.log(response);
-        switch (response.addTeamMemeber) {
+        switch (response.addTeamMember) {
             case 'Engineer':
                 engineerPrompt();
                 break;

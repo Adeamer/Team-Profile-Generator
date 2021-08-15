@@ -5,7 +5,7 @@ const tempDirect = path.resolve(__dirname, "../src");
 //function for adding the manager's details into the manager.html
 const renderManager = manager => {
 
-    let template = fs.readFileSync(path.resolve(templatesDir, "manager.html"), "utf8");
+    let template = fs.readFileSync(path.resolve(tempDirect, "manager.html"), "utf8");
     template = replacePlaceholders(template, "name", manager.getName());
     template = replacePlaceholders(template, "role", manager.getposition());
     template = replacePlaceholders(template, "email", manager.getEmail());
@@ -17,7 +17,7 @@ const renderManager = manager => {
 //function for adding the engineer's details into the engineer.html
 const renderEngineer = engineer => {
 
-    let template = fs.readFileSync(path.resolve(templatesDir, "engineer.html"), "utf8");
+    let template = fs.readFileSync(path.resolve(tempDirect, "engineer.html"), "utf8");
     template = replacePlaceholders(template, "name", engineer.getName());
     template = replacePlaceholders(template, "role", engineer.getposition());
     template = replacePlaceholders(template, "email", engineer.getEmail());
@@ -29,7 +29,7 @@ const renderEngineer = engineer => {
 //Function for adding the intern's details into the intern.html
 const renderIntern = intern => {
 
-    let template = fs.readFileSync(path.resolve(templatesDir, "intern.html"), "utf8");
+    let template = fs.readFileSync(path.resolve(tempDirect, "intern.html"), "utf8");
     template = replacePlaceholders(template, "name", intern.getName());
     template = replacePlaceholders(template, "role", intern.getposition());
     template = replacePlaceholders(template, "email", intern.getEmail());
@@ -63,7 +63,7 @@ const render = employees => {
 
 const renderMain = html => {
 
-    const template = fs.readFileSync(path.resolve(templatesDir, "main.html"), "utf8");
+    const template = fs.readFileSync(path.resolve(tempDirect, "main.html"), "utf8");
     return replacePlaceholders(template, "team", html);
 };
   
