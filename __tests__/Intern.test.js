@@ -1,15 +1,19 @@
-// const Intern = require("../lib/Intern");
+const Intern = require("../lib/Intern");
 
-// describe('Intern', () => {
-    
-//     // 'reverse' should reverse "Hello World!"
-//     it('should reverse a given string', () => {
-//      // In order to test the function, we need to create a working example. First we define 'str'.
-//     const str = 'Hello World!';
-//     // Next we define 'reversed' as the value of 'str' reversed.
-//     const reversed = '!dlroW olleH';
-//      // We pass 'str' into '.reverse()' and set that value equal to result
-//     const result = new Algo().reverse(str);
-//      // We expect 'result' to equal 'reversed' if the 'reverse()' function is working correctly.
-//     expect(result).toEqual(reversed);
-// });
+describe('Intern', () =>{
+    it('has a School', () =>{
+        const TestON = "University of Adelaide";
+        const e = new Intern("Anthony", "01", "anthony@test.com", TestON);
+    expect(e.school).toBe(TestON);
+})
+    it('has a school via getSchool()', () =>{
+        const TestON = "University of Adelaide";
+        const e = new Intern("Anthony", "01", "anthony@test.com", TestON);
+    expect(e.getSchool()).toBe(TestON);
+})
+    it('has a role via the getRole()', () =>{
+        const TestON = 'Intern';
+        const e = new Intern("Anthony", "01", "anthony@test.com", '100');
+    expect(e.getRole()).toBe(TestON);
+})
+});
