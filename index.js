@@ -140,7 +140,7 @@ function managerPrompt() {
         const manager = new Manager(name, id, email, office);
 
         employeeArray.push(manager);
-        console.log(manager);
+        
 
         nextEmployee();
     })
@@ -157,6 +157,8 @@ function engineerPrompt() {
 
         const engineer = new Engineer (name, id, email, github);
 
+        employeeArray.push(engineer);
+
         nextEmployee();
     })
 };
@@ -171,6 +173,8 @@ function internPrompt() {
         let school = response.internSchool;
 
         const intern = new Intern (name, id, email, school);
+
+        employeeArray.push(intern);
 
         nextEmployee();
     })
